@@ -22,23 +22,14 @@ const App = () => {
     getSmurfs()
   }, [])
 
-  useEffect(() => { console.log('appStateSmurgs', smurfs) }, [smurfs])
+  const handleSubmitSmurf = async (newSmurf) => {
 
-  const handleSubmitSmurf = async ({ name, age, height }) => {
-
-    const newSmurf = {
-      name,
-      age,
-      height
-    }
-
-    console.log('onSubmitSmurf', newSmurf)
-
+    
     const {data}= await axios({
       method: 'post',
       url: 'http://localhost:3333/smurfs',
       data: {
-        name, age, height
+        ...newSmurf
       }
     })
 
