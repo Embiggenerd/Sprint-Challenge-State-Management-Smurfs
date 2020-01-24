@@ -22,10 +22,8 @@ const App = () => {
     getSmurfs()
   }, [])
 
-  const handleSubmitSmurf = async (newSmurf) => {
-
-    
-    const {data}= await axios({
+  const handleSubmitSmurf = async newSmurf => {
+    const { data } = await axios({
       method: 'post',
       url: 'http://localhost:3333/smurfs',
       data: {
@@ -34,11 +32,21 @@ const App = () => {
     })
 
     setSmurfs(data)
-
   }
+
+  const handleDeleteSmurf = async smurfID => {
+    console.log('handleDeleteSMurf', smurfID)
+    const { data } = await axios({
+      method: 'delete',
+      url: `http://localhost:3333/smurfs/${smurfID}`
+    })
+
+    setSmurfs(data)
+  }
+
   return (
     <div className="App">
-      <SmurfContext.Provider value={{ smurfs, handleSubmitSmurf }} >
+      <SmurfContext.Provider value={{ smurfs, handleSubmitSmurf, handleDeleteSmurf }} >
         <SmurfList />
         <SmurfForm />
       </SmurfContext.Provider>
