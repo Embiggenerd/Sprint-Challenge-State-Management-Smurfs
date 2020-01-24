@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from 'axios'
 
+import SmurfList from './SmurfList'
+import { SmurfContext } from '../contexts'
+
 const App = () => {
+  const [smurfs, setSmurfs] = useState([])
+
   useEffect(() => {
     const getSmurfs = async () => {
       try {
         const { data } = await axios.get('http://localhost:3333/smurfs')
         console.log('getSmurfs data', data)
+        setSmurfs(data)
       } catch (error) {
         console.log('getSmurfs error', error)
       }
@@ -15,14 +21,13 @@ const App = () => {
     getSmurfs()
   }, [])
 
-
+  useEffect(()=>{console.log('appStateSmurgs', smurfs)}, [smurfs])
 
   return (
     <div className="App">
-      <h1>SMURFS! 2.0 W/ Redux</h1>
-      <div>Welcome to your state management version of Smurfs!</div>
-      <div>Start inside of your `src/index.js` file!</div>
-      <div>Have fun!</div>
+      <SmurfContext.Provider value={{smurfs}} >
+        <SmurfList />
+      </SmurfContext.Provider>
     </div>
   );
 
