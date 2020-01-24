@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react'
 import { SmurfContext } from '../contexts';
 
 const SmurfForm = () => {
-    const { handleSubmitSmurf } = useContext(SmurfContext)
+    const { handleSubmitSmurf, handleEditSmurf } = useContext(SmurfContext)
 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
@@ -20,6 +20,7 @@ const SmurfForm = () => {
         setAge("")
         setHeight("")
     }
+
 
     return (
         <form onSubmit={handleSubmit}>

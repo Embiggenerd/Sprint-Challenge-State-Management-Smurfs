@@ -6,12 +6,12 @@ const Smurf = ({ name, age, height, id }) => {
     const { handleDeleteSmurf } = useContext(SmurfContext)
 
     return (
-        <div>
+        <li>
             <p>{`name: ${name}`}</p>
             <p>{`age: ${age}`}</p>
             <p>{`height: ${height}`}</p>
             <button onClick={() => handleDeleteSmurf(id)}>Delete</button>
-        </div>
+        </li>
     )
 }
 

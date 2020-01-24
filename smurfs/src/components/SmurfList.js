@@ -5,9 +5,9 @@ import { SmurfContext } from '../contexts'
 
 const SmurfList = () => {
     const { smurfs } = useContext(SmurfContext)
-    
+
     return (
-        <div>{smurfs.map(smurf => <Smurf key={smurf.id} {...smurf} />)}</div>
+        <ol>{smurfs.map(smurf => <Smurf key={smurf.id} {...smurf} />)}</ol>
     )
 }
 
