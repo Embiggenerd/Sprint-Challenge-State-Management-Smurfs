@@ -25,18 +25,23 @@ const App = () => {
   useEffect(() => { console.log('appStateSmurgs', smurfs) }, [smurfs])
 
   const handleSubmitSmurf = async ({ name, age, height }) => {
-    console.log('onSubmitSmurf', name, age, height)
-    let count = 2
 
     const newSmurf = {
-      id: count,
       name,
       age,
       height
     }
-    count++
 
-    const { data } = await axios.post('http://localhost:3333/smurfs', newSmurf)
+    console.log('onSubmitSmurf', newSmurf)
+
+    const {data}= await axios({
+      method: 'post',
+      url: 'http://localhost:3333/smurfs',
+      data: {
+        name, age, height
+      }
+    })
+
     setSmurfs(data)
 
   }

@@ -6,8 +6,8 @@ const SmurfForm = () => {
     const { handleSubmitSmurf } = useContext(SmurfContext)
 
     const [name, setName] = useState("")
-    const [age, setAge] = useState(0)
-    const [height, setHeight] = useState(0)
+    const [age, setAge] = useState("")
+    const [height, setHeight] = useState("")
 
     useEffect(() => { console.log(name, age, height) }, [name, age, height])
     const handleOnChange = (event, setter) => {
@@ -18,6 +18,9 @@ const SmurfForm = () => {
         event.preventDefault()
         console.log('handleSubmit', name, age, height)
         handleSubmitSmurf({ name, age, height })
+        setName("")
+        setAge("")
+        setHeight("")
     }
 
     return (
@@ -25,7 +28,7 @@ const SmurfForm = () => {
             <input onChange={event => handleOnChange(event, setName)} value={name} placeholder="Name" />
             <input onChange={event => handleOnChange(event, setAge)} value={age} placeholder="Age" />
             <input onChange={event => handleOnChange(event, setHeight)} value={height} placeholder="Height" />
-            <button type="submit">{"submit"}</button>
+            <input type="submit" value="submit"/>
         </form>
     )
 }
