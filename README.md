@@ -23,10 +23,21 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
-- [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+  * To be able to pass down state and handler functions without drilling through props
+
+- [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece 
+do? Why is the store known as a 'single source of truth' in a redux application?
+  * Actions are objects that get passed to dispatch such as { type: ADD, payload: 1 }
+  * Reducers are functions that get called on every action. The type of an action defines which producer is used,
+      and the producer returns the new state. Reducer are pure functions.
+  * CreateStore is called on a root reducer function and returns the store. The store contains a state and an array of subscribers. It exposes three main methods - dispatch, subscribe, and getState. Dispatch calls the rootReducer on  actions, which mutate state. It also invokes listeners in the listener array, which were put there using subscribe, and this helps create two way binding. GetState simply communcates state to subscribers. The store is the single source of truth because it maintains state for the state machine, aka the application.
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+  * Application state is globally relevant, but the component state is only important to that component. 
+  * Component state is useful for forms. The onchange handler func should mutate component state, but onsubmit should mutate global state to actually use the user's input.
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+  * Redux-thunk simply calls an action if it is a function and passes it dispatch and state as first and second parameters. It allows us to use cleaner code. 
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+  * Component state with context. No setup but very convenient.
 
 ## Project Set Up
 
